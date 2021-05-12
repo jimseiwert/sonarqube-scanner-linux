@@ -28,12 +28,13 @@ runs:
     - name:  Install the required packages
       run:  |
         echo "Creating directory"
-        mkdir ${{ github.action_path }}/sonarqube -p
-        cd ${{ github.action_path }}/sonarqube
+        mkdir ${{ github.action_path }}/sq_download -p
+        cd ${{ github.action_path }}/sq_download
         echo "Downloading scanner"
         wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         echo "UnZip Scanner"
-        unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip –d ${{ github.action_path }}/sonarqube
+        unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip –d ${{ github.action_path }}/sq
+        cd ${{ github.action_path }}/sq
         echo "**** List content"
         ls
         echo "**** End content"
