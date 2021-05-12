@@ -44,18 +44,13 @@ if [ "$use_embedded_jre" = true ]; then
   export JAVA_HOME="$sonar_scanner_home/jre"
 fi
 
-echo "JAVA_HOME value is: $JAVA_HOME"
-
 if [ -n "$JAVA_HOME" ]
 then
   java_cmd="$JAVA_HOME/bin/java"
 else
   java_cmd="`which java`"
 fi
-for entry in "$JAVA_HOME"/bin/*
-do
-  echo "$entry"
-done
+
 if [ -z "$java_cmd" -o ! -x "$java_cmd" ] ; then
   echo "Could not find 'java' executable in JAVA_HOME or PATH."
   exit 1
