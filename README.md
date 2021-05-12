@@ -32,5 +32,6 @@ jobs:
         token: ${{ secrets.sonarqube_token }}
         project-key: ${{ env.SONARQUBE_PROJECT_KEY }}
         project-name: ${{ env.SONARQUBE_PROJECT_NAME }}
+        sq-version: "4.6.1.2450" #default   
 ```
 
