@@ -27,6 +27,8 @@ runs:
   steps:
     - name:  Install the required packages
       run:  |
+        echo "Getting zip tool"
+        sudo apt-get install zip unzip
         echo "Creating directory"
         mkdir ${{ github.action_path }}/sq_download -p
         cd ${{ github.action_path }}/sq_download
