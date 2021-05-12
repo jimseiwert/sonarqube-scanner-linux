@@ -52,7 +52,7 @@ then
 else
   java_cmd="`which java`"
 fi
-for entry in "$java_cmd"/*
+for entry in "$JAVA_HOME"/*
 do
   echo "$entry"
 done
