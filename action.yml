@@ -28,8 +28,7 @@ runs:
     - name:  Install the required packages
       run:  |
         mkdir ${{ github.action_path }}/sonarqube -p
-        cd ${{ github.action_path }}/sonarqube\
-        echo https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
+        cd ${{ github.action_path }}/sonarqube
         wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         unzip sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         ls
