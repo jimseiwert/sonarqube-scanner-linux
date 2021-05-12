@@ -31,9 +31,11 @@ runs:
         cd ${{ github.action_path }}/sonarqube
         wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         unzip sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
-        ls
+        echo **** List content
+        ls -d -- */
+        echo **** End content
       shell: bash 
 
-    - name:  Install
+    - name:  Scan
       run:  ${{ github.action_path }}/sonarqube/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
