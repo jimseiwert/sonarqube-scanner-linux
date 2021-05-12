@@ -36,11 +36,8 @@ runs:
         unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         mv sonar-scanner-${{ inputs.sq-version }}-linux ${{ github.action_path }}/sq
         cd ${{ github.action_path }}/sq
-        echo "**** List content"
-        ls
-        echo "**** End content"
       shell: bash 
 
     - name:  Scan
-      run:  ${{ github.action_path }}/sonarqube/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
+      run:  ${{ github.action_path }}/sq/bin/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
