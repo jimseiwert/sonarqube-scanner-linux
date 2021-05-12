@@ -27,8 +27,6 @@ runs:
   steps:
     - name:  Install the required packages
       run:  |
-        apt-get update
-        apt-get install unzip wget nodejs
         mkdir /downloads/sonarqube -p
         cd /downloads/sonarqube\
         echo https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
