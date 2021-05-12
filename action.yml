@@ -31,7 +31,7 @@ runs:
         cd ${{ github.action_path }}/sonarqube
         wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
-        mv sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip ${{ github.action_path }}/sonarqube
+        mv sonar-scanner-cli-${{ inputs.sq-version }}-linux ${{ github.action_path }}/sonarqube
         echo "**** List content"
         ls
         echo "**** End content"
