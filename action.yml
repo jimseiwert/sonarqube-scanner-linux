@@ -17,13 +17,27 @@ inputs:
   project-name:  # id of input
     description: 'The name of the SonarQube project'
     required: true
-      
+  sq-version:  # id of input
+    description: 'The version of the SonarQube scanner'
+    required: true   
+    default: "4.6.1.2450"      
+
 runs:
   using: "composite"
   steps:
-    - name: Enable Execute Permissions
-      run: chmod 755 ${{ github.action_path }}/scanner/jre/bin/java
-      shell: bash
-    - name:  Install
-      run:  ${{ github.action_path }}/scanner/bin/sonar-scanner -h --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
+    - name:  Install the required packages
+      run:  |
+        echo "Creating directory"
+        mkdir ${{ github.action_path }}/sq_download -p
+        cd ${{ github.action_path }}/sq_download
+        echo "Downloading scanner"
+        wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
+        echo "UnZip Scanner"
+        unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
+        mv sonar-scanner-${{ inputs.sq-version }}-linux ${{ github.action_path }}/sq
+        cd ${{ github.action_path }}/sq
+      shell: bash 
+
+    - name:  Scan
+      run:  ${{ github.action_path }}/sq/bin/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
