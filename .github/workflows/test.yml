@@ -1,0 +1,19 @@
+on: [push]
+
+env:
+  SONARQUBE_PROJECT_KEY: ${{ github.event.repository.owner.login }}:${{ github.event.repository.name }}
+  SONARQUBE_PROJECT_NAME: ${{ github.event.repository.owner.login }}:${{ github.event.repository.name }}
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Linux job runner
+    steps:
+    - uses: actions/checkout@v2
+    - id: scan
+      uses: ./
+      with:
+        host-url: ${{ secrets.SONARQUBE_URL }}
+        token: ${{ secrets.SONARQUBE_TOKEN }}
+        project-key: ${{ env.SONARQUBE_PROJECT_KEY }}
+        project-name: ${{ env.SONARQUBE_PROJECT_NAME }}

@@ -1,0 +1,26 @@
+name: 'SonarQube Scanner-Linux'
+author: 'Jim Seiwert'
+description: 'Scans your code using the sonarqube batch file'
+branding:
+  icon: 'activity'
+  color: 'blue'
+inputs:
+  host-url:  # id of input
+    description: 'URL to SonarQube'
+    required: true
+  token:  # id of input
+    description: 'SonarQube token'
+    required: true
+  project-key:  # id of input
+    description: 'The name of the SonarQube project'
+    required: true
+  project-name:  # id of input
+    description: 'The name of the SonarQube project'
+    required: true
+      
+runs:
+  using: "composite"
+  steps:
+    - name:  Install
+      run:  ${{ github.action_path }}/scanner/bin/sonar-scanner -h --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
+      shell: bash
