@@ -44,6 +44,8 @@ if [ "$use_embedded_jre" = true ]; then
   export JAVA_HOME="$sonar_scanner_home/jre"
 fi
 
+echo "JAVA_HOME value is: $JAVA_HOME"
+
 if [ -n "$JAVA_HOME" ]
 then
   java_cmd="$JAVA_HOME/bin/java"
