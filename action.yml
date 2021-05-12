@@ -21,9 +21,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Enable Execute Permissions
-      run: chmod 755 ${{ github.action_path }}/scanner/jre/bin/java
-      shell: bash
     - name:  Install
       run:  ${{ github.action_path }}/scanner/bin/sonar-scanner -h --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
