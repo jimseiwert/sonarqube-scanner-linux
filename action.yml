@@ -33,11 +33,7 @@ runs:
         echo "Downloading scanner"
         wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
         echo "UnZip Scanner"
-        unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip
-        echo "**** List content"
-        ls
-        echo "**** End content"
-        mv sonar-scanner-${{ inputs.sq-version }}-linux ${{ github.action_path }}/sonarqube
+        unzip -q sonar-scanner-cli-${{ inputs.sq-version }}-linux.zip –d ${{ github.action_path }}/sonarqube
         echo "**** List content"
         ls
         echo "**** End content"
