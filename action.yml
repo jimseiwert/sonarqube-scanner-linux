@@ -22,5 +22,5 @@ runs:
   using: "composite"
   steps:
     - name:  Install
-      run:  ${{ github.action_path }}/scanner/bin/sonar-scanner -h --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
+      run:  ${{ github.action_path }}/scanner/bin/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
