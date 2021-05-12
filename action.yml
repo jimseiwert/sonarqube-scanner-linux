@@ -17,10 +17,22 @@ inputs:
   project-name:  # id of input
     description: 'The name of the SonarQube project'
     required: true
-      
+env:
+  sqversion: "4.6.1.2450"      
 runs:
   using: "composite"
   steps:
+    - name:  Install the required packages
+      run:  |
+        apt-get update
+        apt-get install unzip wget nodejs
+        mkdir /downloads/sonarqube -p
+        cd /downloads/sonarqube\
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.sqversion }}-linux.zip
+        unzip sonar-scanner-cli-${{ env.sqversion }}-linux.zip
+        mv sonar-scanner-${{ env.sqversion }}-linux /opt/sonar-scanner
+      shell: bash 
+
     - name:  Install
-      run:  ${{ github.action_path }}/scanner/bin/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
+      run:  /opt/sonar-scanner --define sonar.host.url="${{ inputs.host-url }}" --define sonar.login="${{ inputs.token }}" --define sonar.projectKey="${{  inputs.project-key }}" --define sonar.projectName="${{ inputs.project-name }}"
       shell: bash
